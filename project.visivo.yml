@@ -1,7 +1,7 @@
 path: project
 name: jaffle_shop
 defaults:
-  source_name: jaffle_shop_duckdb
+  source_name: jaffle_shop_dev
   threads: 8
   thumbnail_mode: missing
   levels: []
@@ -13,11 +13,6 @@ dbt:
 includes: []
 destinations: []
 alerts: []
-sources:
-  - name: jaffle_shop_duckdb
-    database: jaffle_shop.duckdb
-    type: duckdb
-    connection_pool_size: 6
 
 models: []
 traces: []

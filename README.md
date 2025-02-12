@@ -68,8 +68,8 @@ python3.10 -m pip install --upgrade pip
 python3.10 -m pip install -r requirements.txt
 source venv/bin/activate
 dbt build
-dbt docs generate
-dbt docs serve
+visivo compile 
+visivo serve
 ```
 </details>
 
@@ -85,8 +85,8 @@ python3.10 -m pip install --upgrade pip
 python3.10 -m pip install -r requirements.txt
 source venv/bin/activate.fish
 dbt build
-dbt docs generate
-dbt docs serve
+visivo compile
+visivo serve
 ```
 </details>
 
@@ -102,8 +102,8 @@ python3.10 -m pip install --upgrade pip
 python3.10 -m pip install -r requirements.txt
 source venv/bin/activate.csh
 dbt build
-dbt docs generate
-dbt docs serve
+visivo compile
+visivo serve
 ```
 </details>
 
@@ -119,8 +119,8 @@ python3.10 -m pip install --upgrade pip
 python3.10 -m pip install -r requirements.txt
 venv/bin/Activate.ps1
 dbt build
-dbt docs generate
-dbt docs serve
+visivo compile
+visivo serve
 ```
 </details>
 
@@ -136,8 +136,8 @@ python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 venv\Scripts\activate.bat
 dbt build
-dbt docs generate
-dbt docs serve
+visivo compile
+visivo serve
 ```
 </details>
 
@@ -153,8 +153,8 @@ python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 venv\Scripts\Activate.ps1
 dbt build
-dbt docs generate
-dbt docs serve
+visivo compile
+visivo serve
 ```
 </details>
 
@@ -405,8 +405,8 @@ To get up and running with this project:
 
 1. Generate and view the documentation for the project:
     ```shell
-    dbt docs generate
-    dbt docs serve
+    visivo compile
+    visivo serve
     ```
 
 ## Running `build` steps independently
