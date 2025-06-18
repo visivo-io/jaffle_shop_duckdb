@@ -62,14 +62,14 @@ Prerequisities: Python >= 3.5
 ```shell
 git clone https://github.com/dbt-labs/jaffle_shop_duckdb.git
 cd jaffle_shop_duckdb
-python3 -m venv venv
+python3.10 -m venv venv
 source venv/bin/activate
-python3 -m pip install --upgrade pip
-python3 -m pip install -r requirements.txt
+python3.10 -m pip install --upgrade pip
+python3.10 -m pip install -r requirements.txt
 source venv/bin/activate
 dbt build
-dbt docs generate
-dbt docs serve
+visivo compile 
+visivo serve
 ```
 </details>
 
@@ -79,14 +79,14 @@ dbt docs serve
 ```shell
 git clone https://github.com/dbt-labs/jaffle_shop_duckdb.git
 cd jaffle_shop_duckdb
-python3 -m venv venv
+python3.10 -m venv venv
 source venv/bin/activate.fish
-python3 -m pip install --upgrade pip
-python3 -m pip install -r requirements.txt
+python3.10 -m pip install --upgrade pip
+python3.10 -m pip install -r requirements.txt
 source venv/bin/activate.fish
 dbt build
-dbt docs generate
-dbt docs serve
+visivo compile
+visivo serve
 ```
 </details>
 
@@ -96,14 +96,14 @@ dbt docs serve
 ```shell
 git clone https://github.com/dbt-labs/jaffle_shop_duckdb.git
 cd jaffle_shop_duckdb
-python3 -m venv venv
+python3.10 -m venv venv
 source venv/bin/activate.csh
-python3 -m pip install --upgrade pip
-python3 -m pip install -r requirements.txt
+python3.10 -m pip install --upgrade pip
+python3.10 -m pip install -r requirements.txt
 source venv/bin/activate.csh
 dbt build
-dbt docs generate
-dbt docs serve
+visivo compile
+visivo serve
 ```
 </details>
 
@@ -113,14 +113,14 @@ dbt docs serve
 ```shell
 git clone https://github.com/dbt-labs/jaffle_shop_duckdb.git
 cd jaffle_shop_duckdb
-python3 -m venv venv
+python3.10 -m venv venv
 venv/bin/Activate.ps1
-python3 -m pip install --upgrade pip
-python3 -m pip install -r requirements.txt
+python3.10 -m pip install --upgrade pip
+python3.10 -m pip install -r requirements.txt
 venv/bin/Activate.ps1
 dbt build
-dbt docs generate
-dbt docs serve
+visivo compile
+visivo serve
 ```
 </details>
 
@@ -136,8 +136,8 @@ python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 venv\Scripts\activate.bat
 dbt build
-dbt docs generate
-dbt docs serve
+visivo compile
+visivo serve
 ```
 </details>
 
@@ -153,8 +153,8 @@ python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 venv\Scripts\Activate.ps1
 dbt build
-dbt docs generate
-dbt docs serve
+visivo compile
+visivo serve
 ```
 </details>
 
@@ -230,10 +230,10 @@ To get up and running with this project:
     <summary>POSIX bash/zsh</summary>
 
     ```shell
-    python3 -m venv venv
+    python3.10 -m venv venv
     source venv/bin/activate
-    python3 -m pip install --upgrade pip
-    python3 -m pip install -r requirements.txt
+    python3.10 -m pip install --upgrade pip
+    python3.10 -m pip install -r requirements.txt
     source venv/bin/activate
     ```
     </details>
@@ -242,10 +242,10 @@ To get up and running with this project:
     <summary>POSIX fish</summary>
 
     ```shell
-    python3 -m venv venv
+    python3.10 -m venv venv
     source venv/bin/activate.fish
-    python3 -m pip install --upgrade pip
-    python3 -m pip install -r requirements.txt
+    python3.10 -m pip install --upgrade pip
+    python3.10 -m pip install -r requirements.txt
     source venv/bin/activate.fish
     ```
     </details>
@@ -254,10 +254,10 @@ To get up and running with this project:
     <summary>POSIX csh/tcsh</summary>
 
     ```shell
-    python3 -m venv venv
+    python3.10 -m venv venv
     source venv/bin/activate.csh
-    python3 -m pip install --upgrade pip
-    python3 -m pip install -r requirements.txt
+    python3.10 -m pip install --upgrade pip
+    python3.10 -m pip install -r requirements.txt
     source venv/bin/activate.csh
     ```
     </details>
@@ -266,10 +266,10 @@ To get up and running with this project:
     <summary>POSIX PowerShell Core</summary>
 
     ```shell
-    python3 -m venv venv
+    python3.10 -m venv venv
     venv/bin/Activate.ps1
-    python3 -m pip install --upgrade pip
-    python3 -m pip install -r requirements.txt
+    python3.10 -m pip install --upgrade pip
+    python3.10 -m pip install -r requirements.txt
     venv/bin/Activate.ps1
     ```
     </details>
@@ -324,10 +324,10 @@ To get up and running with this project:
 
     Then I ran all the steps to create a virtual environment and install the requirements of our DuckDB-based Jaffle Shop repo:
     ```shell
-    $ python3 -m venv venv
+    $ python3.10 -m venv venv
     $ source venv/bin/activate
-    (venv) $ python3 -m pip install --upgrade pip
-    (venv) $ python3 -m pip install -r requirements.txt
+    (venv) $ python3.10 -m pip install --upgrade pip
+    (venv) $ python3.10 -m pip install -r requirements.txt
     ```
 
     Let's examine where `dbt` is installed and which version it is reporting:
@@ -405,8 +405,8 @@ To get up and running with this project:
 
 1. Generate and view the documentation for the project:
     ```shell
-    dbt docs generate
-    dbt docs serve
+    visivo compile
+    visivo serve
     ```
 
 ## Running `build` steps independently
