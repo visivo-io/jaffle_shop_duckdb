@@ -1,0 +1,101 @@
+traces:
+  - name: total_amt_payment
+    model: ${ ref(payments_reconciliation) }
+    columns: 
+      t_payments: sum(order_amount)
+    props:
+      type: indicator 
+      value: column(t_payments)[0]
+      number: 
+        prefix: "$ "
+
+  - name: total_revenue_payment
+    model: ${ ref(payments_reconciliation) }
+    columns: 
+      t_payments: sum(pay_amount)
+    props:
+      type: indicator 
+      value: column(t_payments)[0]
+      number: 
+        prefix: "$ "
+
+  - name: total_payment_realization
+    model: ${ ref(payments_reconciliation) }
+    columns: 
+      t__payment_realization: (sum(pay_amount) / sum(order_amount)) * 100
+    props:
+      type: indicator 
+      value: column(t__payment_realization)[0]
+      number: 
+        suffix: " %"
+      mode: "gauge+number"
+      gauge:
+        axis:
+          range: [0, 100]
+        bar:
+          color: "#17becf"
+
+  - name: payments_by_method
+    model: ${ref(stg_payments)}
+    cohort_on: payment_method
+    props:
+      type: bar
+      x: ?{amount}
+      y: ?{payment_method}
+      orientation: h
+
+  - name: Top 10 customers trace
+    model: ${ref(top_10_customers)}
+    cohort_on: ?{first_name || ' ' || last_name}
+    props:
+      type: bar
+      orientation: h
+      x: ?{customer_lifetime_value_float}
+      y: ?{first_name || ' ' || last_name}
+      marker:
+        color: '#14aede'
+      textposition: none
+      showlegend: false
+    order_by: 
+      - ?{customer_lifetime_value_float}
+
+  - name: Order Amount By StatusTrace
+    model: ${ref(revenue_refunds)}
+    props:
+      type: bar
+      x: ["Revenue", "Refunds"]
+      y: [query(income), query(refund)]
+
+  - name: Revenue Refunds Trace
+    model: ${ref(revenue_refunds)}
+    cohort_on: ?{label}
+    props:
+      type: bar
+      x: ?{label}
+      y: ?{value}
+      text: ?{value}
+      textposition: none
+      showlegend: false
+        
+
+  - name: order_payment_status_trace
+    model: ${ref(payments_reconciliation)}
+    cohort_on: ?{status}
+    columns:
+        order_id: order_id
+        order_date: order_date::varchar
+        first_name: first_name
+        last_name: last_name
+        customer_name: customer_name
+        status: status
+        order_amount: order_amount
+        pay_amount: pay_amount
+    props:
+        type: scatter
+        x: column(order_date)
+        y: column(order_id)
+        marker:
+          color: 
+            - "#14deae"
+
+      
