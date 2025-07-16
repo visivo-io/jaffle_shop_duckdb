@@ -1,0 +1,52 @@
+models: 
+  - name: returned_orders
+    sql: SELECT * FROM orders WHERE status = 'returned' OR status = 'return_pending' 
+  
+  - name: sales_trend
+    sql: | 
+      SELECT 
+        order_date,
+        EXTRACT(YEAR FROM order_date) AS year_label,
+        strftime('%Y-%m', order_date) AS month_label,
+        strftime('%Y-%m-%d', order_date) AS day_label,
+        SUM(amount) AS total_sales 
+      FROM orders
+      GROUP BY order_date
+      ORDER BY order_date
+
+  - name: orders_by_status_group
+    sql: |
+      SELECT 
+        status,
+        SUM(amount) AS order_amount
+      FROM orders
+      GROUP BY status
+
+  - name: orders_total
+    sql: |
+      SELECT 
+        order_date,
+        SUM(amount) AS total_sales 
+      FROM orders
+      GROUP BY order_date
+
+  - name: recent_activity
+    sql: | 
+      SELECT 
+        ord.order_id,
+        ord.status,
+        ord.amount,
+        cst.first_name,
+        cst.last_name,
+        ord.order_date,
+        ord.status
+      FROM orders ord
+      JOIN customers cst ON ord.customer_id = cst.customer_id
+      ORDER BY order_date DESC
+
+  - name: payments_by_group
+    sql: |
+      SELECT payment_method, 
+      SUM(amount) AS total_amount FROM stg_payments GROUP BY payment_method
+
+      

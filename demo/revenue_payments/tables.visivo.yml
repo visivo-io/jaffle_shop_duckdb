@@ -1,0 +1,19 @@
+tables:
+  - name: order_payment_status_table
+    traces:
+      - ${ref(order_payment_status_trace)}
+    column_defs:
+      - trace_name: order_payment_status_trace
+        columns:
+        - header: "Order Reference"
+          key: columns.order_id
+        - header: "Order Date"
+          key: columns.order_date
+        - header: "Customer"
+          key: columns.customer_name
+        - header: "Status"
+          key: columns.status
+        - header: "Order Amount"
+          key: columns.order_amount
+        - header: "Paid Amount"
+          key: columns.pay_amount

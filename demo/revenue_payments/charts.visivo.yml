@@ -1,0 +1,73 @@
+charts: 
+  - name: Total Order Amount
+    traces:
+      - ${ref(total_revenue_trace)}
+    layout: 
+      title: 
+        text: Total Sales
+      xaxis:
+        visible: false
+      yaxis:
+        visible: false
+
+  - name: Payments Received
+    traces:
+      - ${ref(total_amt_payment)}
+    layout: 
+      title: 
+        text: Payments Received
+
+
+  - name: Payments Realization Rate
+    traces:
+      - ${ref(total_payment_realization)}
+    layout: 
+      title: 
+        text: Payments Realization Rate
+
+
+  - name: Payment By Method
+    traces:
+      - ${ref(payments_by_method)}
+    layout: 
+      title: 
+        text: Payment By Method
+        font:
+          size: 16
+          color: "#111827"
+      xaxis:
+        title:
+          text: Amount
+        tickprefix: "$"
+      yaxis:
+        showticklabels: false
+        title:
+          text: "Payment Method"
+
+  - name: Top 10 customers
+    traces:
+      - ${ref(Top 10 customers trace)}
+    layout: 
+      title:
+        text: "Top Customers By Lifetime Value"
+      yaxis:
+        ticksuffix: " "
+      xaxis:
+        title:
+          text: "No. Of Orders"
+
+
+  - name: Revenue Refunds
+    traces:
+      - ${ref(Revenue Refunds Trace)}
+    selector:
+      name: ${ref(order_status_selector_1)}
+      type: multiple
+    layout: 
+      title:
+        text: "Revenue Vs Refunds"
+      yaxis:
+        tickformat: ",.2f"
+        tickprefix: "$ "
+        title:
+            text: "Amount"

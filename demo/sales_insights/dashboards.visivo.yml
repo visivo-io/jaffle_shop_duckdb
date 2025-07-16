@@ -1,0 +1,34 @@
+dashboards:
+  - name: Sales Insights Dashboard
+    tags: []
+    rows:
+      - height: small
+        items:
+          - width: 1
+            chart: ${ref(Total Revenue)}
+
+          - width: 1
+            chart: ${ref(Total Refund)}
+
+          - width: 1
+            chart: ${ref(Average Order Size)}
+
+          - width: 1
+            chart: ${ref(Average Order Amount)}
+
+
+      - height: medium
+        items:
+          - width: 1
+            chart: ${ref(Order By Status)}
+          - width: 1
+            chart: ${ref(Cash Bank Accounts)}
+          - width: 2
+            chart: ${ref(Monthly Sales Trend)}
+
+      - height: medium
+        items:
+          - width: 1
+            table: ${ref(recent_activity_table)}
+
+

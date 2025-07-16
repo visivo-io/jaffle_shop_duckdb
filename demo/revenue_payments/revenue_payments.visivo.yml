@@ -1,0 +1,6 @@
+includes:
+  - path: models.visivo.yml
+  - path: traces.visivo.yml
+  - path: charts.visivo.yml
+  - path: tables.visivo.yml
+  - path: dashboards.visivo.yml

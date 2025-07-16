@@ -9,3 +9,7 @@ venv/
 env/
 **/*.duckdb
 **/*.duckdb.wal
+
+# Local Netlify folder
+.netlify
+.env

@@ -1,0 +1,20 @@
+tables:
+  - name: recent_activity_table
+    traces:
+      - ${ref(recent_activity_trace)}
+
+    column_defs:
+      - trace_name: recent_activity_trace
+        columns:
+        - header: "Order Reference"
+          key: columns.order_id
+        - header: "Order Date"
+          key: columns.order_date
+        - header: "First Name"
+          key: columns.first_name
+        - header: "Last Name"
+          key: columns.last_name
+        - header: "Status"
+          key: columns.status
+        - header: "Amount"
+          key: columns.amount

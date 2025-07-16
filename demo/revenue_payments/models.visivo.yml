@@ -1,0 +1,38 @@
+models:
+  - name: payments_reconciliation
+    sql: |
+      SELECT
+        ord.order_id,
+        ord.customer_id,
+        ord.order_date,
+        ord.status,
+        ord.amount AS order_amount,
+        pyt.amount AS pay_amount,
+        pyt.payment_method,
+        cst.first_name,
+        cst.last_name,
+        cst.first_name || ' ' || cst.last_name AS customer_name
+      FROM orders ord
+      JOIN customers cst ON ord.customer_id = cst.customer_id
+      LEFT JOIN stg_payments pyt ON ord.order_id = pyt.order_id
+
+  - name: top_10_customers
+    sql: |
+      SELECT
+        *,
+        CAST(customer_lifetime_value AS FLOAT) AS customer_lifetime_value_float
+      FROM customers 
+      ORDER BY customer_lifetime_value_float
+      LIMIT 10
+
+  - name: revenue_refunds
+    sql: |
+       SELECT 'Revenue' AS label, SUM(amount) AS value
+        FROM orders
+        WHERE status IN ('completed', 'placed', 'shipped')
+        UNION ALL
+        SELECT 'Refund' AS label, SUM(amount) AS value
+        FROM orders
+        WHERE status IN ('returned', 'return_pending') 
+    
+

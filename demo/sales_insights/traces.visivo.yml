@@ -1,0 +1,95 @@
+# {% set date_grains = ['day', 'week', 'month', 'quarter', 'year']%}
+traces: 
+  - name: total_revenue_trace
+    model: ${ref(orders)}
+    columns: 
+      total_revenue: sum(credit_card_amount + coupon_amount + bank_transfer_amount + gift_card_amount)
+    props:
+      type: indicator 
+      value: column(total_revenue)[0]
+      number: 
+        prefix: "$ "
+
+  - name: total_refund_trace
+    model: ${ref(returned_orders)}
+    columns: 
+      total_refund: sum(credit_card_amount + coupon_amount + bank_transfer_amount + gift_card_amount)
+    props:
+      type: indicator 
+      value: column(total_refund)[0]
+      number: 
+        prefix: "$ "
+
+  - name: avg_order_unit_trace
+    model: ${ref(customers)}
+    columns: 
+      avg_order_unit: round(sum(number_of_orders) / count(customer_id))
+    props:
+      type: indicator 
+      value: column(avg_order_unit)[0]
+
+  - name: avg_order_amt_trace
+    model: ${ref(orders)}
+    columns: 
+      avg_order_amt: sum(amount) / count(order_id)
+    props:
+      type: indicator 
+      value: column(avg_order_amt)[0]
+      number: 
+        prefix: "$ "
+
+  - name: order_by_status
+    model: ${ref(orders_by_status_group)}
+    props:
+      type: pie
+      labels: ?{status}
+      values: ?{SUM(order_amount)}
+      sort: true
+
+  - name: payment_by_method
+    model: ${ref(payments_by_group)}
+    props:
+      type: pie
+      labels: ?{payment_method}
+      values: ?{SUM(total_amount)}
+      hole: 0.5
+      marker:
+        colors:
+          - "#4CAF50"
+          - "#f1114a" 
+          - "#f57819"
+          - "#14deae" 
+
+  - name: recent_activity_trace
+    model: ${ref(recent_activity)}
+    cohort_on: ?{status}
+    columns:
+        order_id: order_id
+        order_date: order_date::varchar
+        first_name: first_name
+        last_name: last_name
+        status: status
+        amount: amount
+    props:
+        type: scatter
+        x: column(order_date)
+        y: column(order_id)
+        marker:
+          color: 
+            - "#14deae"
+
+  # {% for date_grain in date_grains %}
+  - name: monthly_sales_trend_{{date_grain}}
+    model: ${ref(sales_trend)}
+    cohort_on: "'{{date_grain}}'"
+    props:
+      type: scatter
+      mode: lines 
+      x: query({% if date_grain == 'year' %} year_label {% elif date_grain == 'month' %} month_label {% elif date_grain == 'day' %} day_label {% else %} date_trunc('{{date_grain}}', order_date)::date::varchar {% endif %})
+      y: ?{SUM(total_sales)}
+    order_by:
+      - query(order_date)
+  # {% endfor %}
+
+  
+

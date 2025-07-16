@@ -1,0 +1,40 @@
+
+selectors:
+  - name: order_status_selector_1
+    label: Order Status
+    column: status
+    model: ${ref(orders)}
+    multi: true
+    default: ["completed", "returned", "pending"]
+
+
+dashboards:
+  - name: Revenue and Payments Dashboard
+    tags: []
+    rows:
+      - height: small
+        items:
+          - width: 1
+            chart: ${ref(Total Order Amount)}
+
+          - width: 1
+            chart: ${ref(Payments Received)}
+
+          - width: 1
+            chart: ${ref(Payments Realization Rate)}
+
+      - height: medium
+        items:
+          - width: 1
+            chart: ${ref(Payment By Method)}
+
+          - width: 1
+            chart: ${ref(Top 10 customers)}
+
+      - height: large
+        items:
+          - width: 1
+            chart: ${ref(Revenue Refunds)}
+
+          - width: 1
+            table: ${ref(order_payment_status_table)}

@@ -1,0 +1,67 @@
+# {% set date_grains = ['day', 'week', 'month', 'quarter', 'year']%}
+charts: 
+  - name: Total Revenue
+    traces:
+      - ${ref(total_revenue_trace)}
+    layout: 
+      title: 
+        text: Total Revenue
+
+  - name: Total Refund
+    traces:
+      - ${ref(total_refund_trace)}
+    layout: 
+      title: 
+        text: Total Refund
+
+  - name: Average Order Size
+    traces:
+      - ${ref(avg_order_unit_trace)}
+    layout: 
+      title: 
+        text: Average Order Size
+
+  - name: Average Order Amount
+    traces:
+      - ${ref(avg_order_amt_trace)}
+    layout: 
+      title: 
+        text: Average Order Amount
+
+  - name: Monthly Sales Trend
+    selector:
+      name: Date Range
+      type: single
+    traces:
+      #{% for date_grain in date_grains %}
+      - ${ref(monthly_sales_trend_{{date_grain}})}
+      #{% endfor %}
+    layout: 
+      title:
+        text: Monthly Sales Trends
+      legend: 
+        orientation: h
+        valign: bottom
+      yaxis:
+        visible: false
+        tickformat: ",.2f"
+        tickprefix: "$ "
+        title:
+            text: "Sales Amount"
+      xaxis:
+        visible: false
+
+  - name: Order By Status
+    traces:
+      - ${ref(order_by_status)}
+    layout: 
+      title:
+        text: Order By Status
+
+
+  - name: Cash Bank Accounts
+    traces:
+      - ${ref(payment_by_method)}
+    layout: 
+      title:
+        text: Cash / Bank Accounts
